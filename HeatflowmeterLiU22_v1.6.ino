@@ -15,12 +15,14 @@
  ***Define variables and it's initial value ***
 ***********************************************/
 // -----------------These can be changed----------------
-float Area           = 0.04;      // [m^2]
+float Area           = 0.04;      // [m^2] //REMEMBER TO RESET TO 0.04 BEFORE NEXT GROUP
 float set_thickness  = 10;        // [m]
 float set_T_cool     = 25.0;      // [C] 
 float set_T_hot      = 30.0;      // [C]
-float S = 0;                     //S calculated by hand as k_ref(TH-TL)/(b_ref*E)
-
+float S = 0;                     //S calculated by hand     
+                                 //as k_ref(TH-TL)/(b_ref*E)
+                                 //how to in detail in the 
+                                 //technical manual
 
 // -----------Nothing Bellow should be changed---------------
 float read_T_cool    = 0.0;       // [C]
@@ -121,7 +123,7 @@ void setup() {
   lcd.setCursor(0,1); //Second row, first column
   lcd.print("Bachelor project 22"); 
   lcd.setCursor(0,2); //Second row, first column
-  lcd.print("version 1.4"); 
+  lcd.print("version 1.6"); 
   delay(5000); //wait 2 sec
   
   lcd.clear(); //clear the whole LCD
@@ -203,6 +205,9 @@ void loop()
     updateSelection(); //update the selection on the LCD
     refreshSelection = false; // reset the variable - wait for a new trigger
   }
+  
+  
+  Serial.println("--------------------------------------------------"); //beginning of 1 cycle
   
   // ---------------------Temperaturesensor------------------- 
   temp_sensor_cool.requestTemperatures();
@@ -327,6 +332,7 @@ void loop()
   meanError=sumError/40;
   if(meanError <= 0.005){
     sstate=true;
+    Serial.println("READY, STEADY STATE IS ACHIEVED"
   }
   else{
     sstate=false;
@@ -347,7 +353,7 @@ void loop()
 
   
 
-  Serial.println("--------------------------------------------------"); //end of 1 cycle
+  
   
 
 }
