@@ -332,7 +332,7 @@ void loop()
   meanError=sumError/40;
   if(meanError <= 0.005){
     sstate=true;
-    Serial.println("READY, STEADY STATE IS ACHIEVED"
+    Serial.println("READY, STEADY STATE IS ACHIEVED");
   }
   else{
     sstate=false;
